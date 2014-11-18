@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/chfolder_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/folder" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/chfolder_item_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@+id/linerlayout_imagebutton"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/chfolder_name"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:textColor="#ff000000"
+            android:textSize="24px" />
+
+        <TextView
+            android:id="@+id/chfolder_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:textColor="#ff000000"
+            android:textSize="16px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal" >
+
+        <ImageView
+            android:id="@+id/chfolder_forword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/forword" />
+
+    </LinearLayout>
+
+</LinearLayout>
