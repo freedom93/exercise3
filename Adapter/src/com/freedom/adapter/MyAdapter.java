@@ -45,7 +45,7 @@ public class MyAdapter extends BaseAdapter {
 		if(convertView == null){
 			convertView = mInflater.inflate(R.layout.list_item, parent, false);
 			holder = new ViewHolder();
-			holder.text = (TextView)convertView.findViewById(R.id.text_hello);
+			holder.text = (TextView)convertView.findViewById(R.id.folder_name);
 			convertView.setTag(holder);
 		}else{
 			holder = (ViewHolder) convertView.getTag();

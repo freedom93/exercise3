@@ -18,8 +18,8 @@ public class AdapterActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_adapter);
-		mList = (ListView)findViewById(R.id.listview);
+		setContentView(R.layout.folder_list_container);
+		mList = (ListView)findViewById(R.id.folder_list);
 		data = new ArrayList<String>(Arrays.asList("hello","world","sorry"));
 		adapter = new MyAdapter(this, data);
 		mList.setAdapter(adapter);
