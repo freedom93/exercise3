@@ -9,45 +9,26 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class MyAdapter extends BaseAdapter {
-	
-	private LayoutInflater mInflater;
-	private Context mContext;
-	private List<String> mDatas;
-	
-	public MyAdapter(Context context, List<String> mDatas){
-		
-		mInflater = LayoutInflater.from(context);
-		this.mContext = context;
-		this.mDatas = mDatas;
-	}
-	
-	
+/**
+ * CommonAdapter 一个抽象类， 除了getView之外的方法都实现了，
+ * 故我们的MyAdapter只需要实现一个getView，
+ * 然后再getView联合通用的ViewHolder就能打造出万能的Adapter
+ */
+public class MyAdapter extends CommonAdapter {
 
-	@Override
-	public int getCount() {
-		return mDatas.size();
-	}
-
-	@Override
-	public Object getItem(int position) {
-		return mDatas.get(position);
-	}
-
-	@Override
-	public long getItemId(int position) {
-		return position;
+	public MyAdapter(Context context, List mData) {
+		super(context, mData);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		//实例化一个viewHolder
-		ViewHolder holder = ViewHolder.get(mContext, convertView, parent, R.layout.list_item, position);
-		//通过getView获取控件
-		TextView tv = holder.getView(R.id.folder_name);
-		//使用
-		tv.setTag(mDatas.get(position));
-		return holder.getConvertView();
+		ViewHolder viewHolder = ViewHolder.get(context, convertView, parent, R.layout.list_item, position);
+		TextView tv = viewHolder.getView(R.id.folder_name);
+		tv.setText(mData.get(position).toString());
+		return viewHolder.getConvertView();
 	}
+	
+	
 	
 }
