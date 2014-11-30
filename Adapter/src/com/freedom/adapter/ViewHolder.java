@@ -1,10 +1,13 @@
 package com.freedom.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 /**
  * 通用的ViewHolder
  * ViewHolder的作用:通过convertView.setTag与convertView进行绑定，
@@ -23,8 +26,10 @@ public class ViewHolder {
      * 当需要拿这些控件时，通过getView(id)进行获取；
      * SparseArray和Map类似，但比Map有效率，键值只能是Integer
      */  
-	private SparseArray<View> mViews;
+	private final SparseArray<View> mViews;
+	private int mPosition;
 	private View mConvertView;
+	
 	
 	/**
 	 * ViewHolder构造函数
@@ -34,8 +39,10 @@ public class ViewHolder {
 	 * @param position
 	 */
 	private ViewHolder(Context context, ViewGroup parent, int layoutId, int position){
+		this.mPosition = position;
 		this.mViews = new SparseArray<View>();
 		mConvertView = LayoutInflater.from(context).inflate(layoutId, parent, false);
+		//setTag
 		mConvertView.setTag(this);
 	}
 	
@@ -73,5 +80,59 @@ public class ViewHolder {
 	public View getConvertView(){
 		return mConvertView;
 	}
+	
+	//UpGradeViewHolder
+	//其实布局里面的View常用也就那么几种：ImageView,TextView,Button,CheckBox等等
+	//ViewHolder还可以封装一些常用的方法，
+	//比如setText(id,String)；setImageResource(viewId, resId)；setImageBitmap(viewId, bitmap)；
 
+	/**
+	 * 为TextView设置字符串
+	 * @param viewId
+	 * @param text
+	 * @return
+	 */
+	public ViewHolder setText(int viewId, String text){
+		TextView view  = getView(viewId);
+		view.setText(text);
+		return this;
+	}
+	
+	/** 
+     * 为ImageView设置图片 
+     * @param viewId 
+     * @param resId 
+     * @return 
+     */  
+	public ViewHolder setImageResource(int viewId, int resId){
+		ImageView view  = getView(viewId);
+		view.setImageResource(resId);
+		return this;
+	}
+	
+	/**
+	 * 为ImageView设置图片 
+	 * @param viewId
+	 * @param bm
+	 * @return
+	 */
+	public ViewHolder setImageBitmap(int viewId, Bitmap bm){
+		ImageView view  = getView(viewId);
+		view.setImageBitmap(bm);
+		return this;
+	}
+	
+	/**
+	 * 通过Url为ImageView设置图片 
+	 * @param viewId
+	 * @param bm
+	 * @return
+	 */
+	public ViewHolder setImageByUrl(int viewId, String url){
+		//待实现
+		return this;
+	}
+	
+	
+	
 }

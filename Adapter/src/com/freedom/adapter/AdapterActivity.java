@@ -31,9 +31,9 @@ public class AdapterActivity extends Activity {
 
 			@Override
 			public void convert(ViewHolder holder, String item) {
-				TextView view = holder.getView(R.id.folder_name);
-				view.setText(item);
-				
+//				TextView view = holder.getView(R.id.folder_name);
+//				view.setText(item);
+				holder.setText(R.id.folder_name, item);
 			}
 		});
 		
