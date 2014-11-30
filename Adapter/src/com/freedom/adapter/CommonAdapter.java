@@ -4,6 +4,8 @@ import java.util.List;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 /**
@@ -14,33 +16,50 @@ import android.widget.BaseAdapter;
  */
 public abstract class CommonAdapter<T> extends BaseAdapter {
 	
-	protected LayoutInflater inflater;
-	protected Context context;
+	protected LayoutInflater mInflater;
+	protected Context mContext;
 	protected List<T> mData;
+	protected final int mItemLayoutId;
 	
-	public CommonAdapter(Context context, List<T> mData){
-		inflater = LayoutInflater.from(context);
+	public CommonAdapter(Context context, List<T> mData, int itemLayoutId){
+		this.mInflater = LayoutInflater.from(context);
 		this.mData = mData;
-		this.context = context;
+		this.mContext = context;
+		this.mItemLayoutId = itemLayoutId;
 	}
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
+
 		return mData.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		// TODO Auto-generated method stub
+
 		return mData.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
+
 		return position;
 	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		final ViewHolder viewHolder = getViewHolder(position, convertView, parent);
+		convert(viewHolder, (T) getItem(position));
+		return viewHolder.getConvertView();
+	}
+	
+	public abstract void convert(ViewHolder holder, T item);
+	
+	private ViewHolder getViewHolder(int position, View convertView, ViewGroup parent){
+		return ViewHolder.get(mContext, convertView, parent, mItemLayoutId, position);
+	}
+	
+	
 	
 	
 
