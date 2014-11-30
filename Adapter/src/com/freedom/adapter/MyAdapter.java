@@ -41,22 +41,13 @@ public class MyAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder holder = null;
-		if(convertView == null){
-			convertView = mInflater.inflate(R.layout.list_item, parent, false);
-			holder = new ViewHolder();
-			holder.text = (TextView)convertView.findViewById(R.id.folder_name);
-			convertView.setTag(holder);
-		}else{
-			holder = (ViewHolder) convertView.getTag();
-		}
-
-		holder.text.setText(mDatas.get(position));
-		return convertView;
+		//实例化一个viewHolder
+		ViewHolder holder = ViewHolder.get(mContext, convertView, parent, R.layout.list_item, position);
+		//通过getView获取控件
+		TextView tv = holder.getView(R.id.folder_name);
+		//使用
+		tv.setTag(mDatas.get(position));
+		return holder.getConvertView();
 	}
 	
-	private final class ViewHolder{
-		private TextView text;
-	}
-
 }
