@@ -60,7 +60,10 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
 	}
 	
 	
-	
-	
+	public void refreshData(List<T> array) {
+		this.mData = array;
+		notifyDataSetChanged();
+
+	}
 
 }

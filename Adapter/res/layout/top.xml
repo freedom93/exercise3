@@ -27,7 +27,7 @@
             android:text="文件列表"
             android:layout_centerInParent="true"
             android:textColor="#ff585858"
-            android:textSize="18dp" />
+            android:textSize="16dp" />
 
         <ImageView
             android:id="@+id/top_right"
